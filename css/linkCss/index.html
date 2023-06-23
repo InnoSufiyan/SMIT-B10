@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Forms</h1>
+
+    <form action="https://dummy.com" method="post">
+        <label for="full_name">Full Name:</label>
+        <input required type="text" name="f_name" id="full_name" placeholder="Full Name">
+        <br />
+        <label for="password">password:</label>
+        <input type="password" name="pass" id="password" placeholder="password">
+        <br />
+        <label for="contact">contact:</label>
+        <input type="number" name="cont" id="contact" placeholder="contact">
+        <br />
+        <!-- textarea -->
+        <textarea name="message" id="message" rows="10" cols="40" placeholder="Type Some Messge"
+            disabled>@usman</textarea>
+        <br />
+        <!-- Radio button -->
+        <p>select your gender</p>
+        <label value="male" for="male">Male</label>
+        <input type="radio" id="male" name="gender" checked>
+        <label value="female" for="Female">Female</label>
+        <input type="radio" id="Female" name="gender">
+        <label value="Others" for="Others">Others</label>
+        <input type="radio" id="Others" name="gender">
+
+        <!-- checkBox -->
+        <p>select your subjects</p>
+        <label for="English">English</label>
+        <input checked type="checkbox" name="subjects" id="English" value="English">
+        <label for="Math">Math</label>
+        <input type="checkbox" name="subjects" id="Math" value="Math">
+        <label for="Science">Science</label>
+        <input type="checkbox" name="subjects" id="Science" value="Science">
+
+        <!-- drop down list -->
+        <p>select your Age</p>
+        <select name="age" id="for_age">
+            <option hidden>Please Select</option>
+            <option value="10">0 to 10</option>
+            <option value="20">11 to 20</option>
+            <option value="30">21 to 30</option>
+        </select>
+        <br>
+        <br>
+        <input type="file" accept="image/png, image/gif, image/jpeg">
+
+        <br>
+        <br>
+
+        <br>
+        <br>
+
+
+        <input type="submit" name="subscribe" value="Submit" />
+    </form>
+</body>
+
+</html>
