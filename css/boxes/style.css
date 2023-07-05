@@ -1,0 +1,47 @@
+/* * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+p {
+    background-color: blue;
+    border: 2px solid red;
+    padding: 10px 30px;
+    text-align: justify;
+    overflow: scroll;
+    display: none;
+    display: inline;
+}
+
+#para1 {
+    margin-bottom: 20px;
+    display: none;
+    visibility: hidden;
+}
+
+#para2 {
+    margin-top: 20px;
+}
+
+.box {
+    width: 30%;
+    margin: 0 auto;
+    y-axis x-axis
+} */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.box {
+    width: 30%;
+    background-color: pink;
+    border: 2px solid red;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 20px;
+}
