@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+div {
+    width: 100px;
+    height: 100px;
+    /* float: right; */
+    /* background-color: blue; */
+}
+
+#one {
+    background-color: yellow;
+    /* position: absolute;
+    right: 0; */
+    /* position: relative; */
+    float: left;
+}
+
+#two {
+    background-color: red;
+    /* clear: both;
+    float: left; */
+}
+#three {
+    background-color: blue;
+    /* float: left; */
+    /* clear: both; */
+}
+#four {
+    background-color: green;
+    /* float: left; */
+}
+#five {
+    background-color: yellow;
+}
+
+#six {
+    background-color: red;
+}
+#seven {
+    background-color: blue;
+}
+#eight {
+    background-color: green;
+}
+#nine {
+    background-color: blue;
+}
+#ten {
+    background-color: green;
+}

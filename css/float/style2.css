@@ -1,0 +1,20 @@
+img {
+    opacity: 0.5;
+}
+
+#image1 {
+    float: left;
+    /* margin-right: 50px; */
+}
+#image2 {
+    float: right;
+    margin-right: 50px;
+}
+
+p {
+    margin-left: 20px;
+    background-color: yellow;
+    /* clear: both; */
+    /* overflow: auto; */
+    margin-top: 100px;
+}
