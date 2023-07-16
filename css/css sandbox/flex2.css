@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#navbar {
+    background-color: blue;
+    color: wheat;
+    padding: 20px;
+}
+
+#awaeen {
+    width: 80%;
+    /* background-color: red; */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+ul {
+    display: flex;
+}
+
+li {
+    list-style: none;
+    margin-left: 30px;
+    padding: 5px 5px;
+    border-radius: 20px;
+}
+
+li:hover {
+    background-color: yellow;
+}
+
+#sideMenu {
+    width: 30%;
+    height: 500px;
+}
+
+#sideMenuUl {
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    /* justify-content: space-evenly; */
+}
