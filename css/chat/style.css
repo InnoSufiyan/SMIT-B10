@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: blueviolet;
+}
+
+.parentLeft {
+  display: flex;
+}
+
+.parentRight {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.messageArea {
+  padding: 100px;
+}
+
+.message {
+  display: flex;
+  gap: 20px;
+}
+
+.pp {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.messageContent {
+  background-color: bisque;
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+  padding: 10px;
+}
+
+.userNameAndImageArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+p {
+  text-align: center;
+}
+
+.parentRight .message {
+  flex-direction: row-reverse;
+}
+
+.parentRight .messageContent {
+  border-radius: 5px;
+  border-bottom-right-radius: 0;
+}
+
+.inputArea {
+  background-color: black;
+  width: 50%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px;
+  gap: 30px;
+  border-radius: 50px;
+  margin: 0 auto;
+}
+
+input {
+  background-color: transparent;
+  width: 100%;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  color: white;
+}
+
+input:focus {
+  border: none;
+}
