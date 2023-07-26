@@ -1,46 +1,130 @@
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
+    margin: 0;
 }
 
-#navbar {
-    background-color: #c9c9ca;
+body {
+    min-height: 100vh;
+    background-color: gray;
 }
 
-ul {
-    display: flex;
-    list-style: none;
-    width: 60%;
-    margin: 0 auto;
-    justify-content: space-between;
-    padding: 10px 0;
+/* 
+.main {
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: green;
+    position: relative;
 }
 
-#firstSec {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-image: url('./assets/1.jpg');
-    height: 600px;
-    background-size: cover;
-    background-position: center center;
-    color: white;
+.signup-btn{
+    position: static;
+    right: 100px;
+    top: 50px;
+    height: 40px;
+    width: 100px;
 }
 
-#firstSecparaSection {
-    display: flex;
-    font-size: 20px;
-    gap: 40px;
-    margin: 20px;
+.signup-btn > span{
+    position: relative;
 }
 
-#firstSecparaSection a {
-    text-decoration: none;
-    color: #2997ff;
+
+.signup-btn > span > img{
+    position: absolute;
+    left: -50px;
+    top: -30px;
 }
 
-#firstSecPara1 {
-    margin-top: 50px;
-    font-size: 60px;
+
+.circle{
+    position: absolute;
+    height: 500px;
+    width: 500px;
+    background-color: #fff;
+    border-radius: 50%;
+    bottom: 0px;
+    right: 100px;
+} */
+/* 
+.zindexBox{
+    background-color: white;
+    height: 500px;
+    width: 500px;   
+    position: relative;
+}
+
+.one,.two,.three{
+    height: 100px;
+    width: 100px;
+    position: absolute;
+}
+.zindexBox .one{
+    background-color: red;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+}
+
+.zindexBox .two{
+    background-color: green;
+    left: 20px;
+    top: 20px;
+    z-index: 2;
+
+}
+
+.zindexBox .three{
+    background-color: blue;
+    left: 40px;
+    top: 40px;
+    z-index: 1;
+} */
+
+.grid {
+    background-color: white;
+}
+
+.grid div{
+    margin-bottom: 20px;
+}
+
+.g-940 {
+    background-color: palevioletred;
+    height: 150px;
+    width: 940px;
+}
+
+.g-460 > div,
+.g-140 > div,
+.g-220 > div,
+.g-300 > div{
+    margin-right: 20px;
+}
+
+.g-460 div{
+    background-color: palevioletred;
+    height: 150px;
+    width: 460px;
+    display: inline-block;
+}
+
+.g-300 div{
+    background-color: palevioletred;
+    height: 150px;
+    width: 300px;
+    display: inline-block;
+}
+
+.g-220 div{
+    background-color: palevioletred;
+    height: 150px;
+    width: 220px;
+    display: inline-block;
+}
+
+.g-140 div{
+    background-color: palevioletred;
+    height: 150px;
+    width: 140px;
+    display: inline-block;
 }

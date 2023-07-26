@@ -1,0 +1,81 @@
+.one {
+    height: 150px;
+    width: 150px;
+    background-color: orange;
+    /* transition: background-color 1s; */
+    transition-timing-function: linear;
+    transition-duration: 3s;
+}
+
+.one:hover {
+    /* background-color: blue; */
+    transform: translate(800px);
+    /* transform: rotate(30deg); */
+    /* transform: scale(2);
+    transform: translate(500px, 200px); */
+}
+
+.two {
+    height: 150px;
+    width: 150px;
+    background-color: grey;
+    /* transition: background-color 1s; */
+    transition-timing-function: ease-in-out;
+    transition-duration: 3s;
+}
+
+.two:hover {
+    /* background-color: blue; */
+    transform: translate(800px);
+    /* transform: rotate(30deg); */
+    /* transform: scale(2);
+    transform: translate(500px, 200px); */
+}
+.three {
+    height: 150px;
+    width: 150px;
+    background-color: red;
+    /* transition: background-color 1s; */
+    transition-timing-function: ease-out;
+    transition-duration: 3s;
+}
+
+.three:hover {
+    /* background-color: blue; */
+    transform: translate(800px);
+    /* transform: rotate(30deg); */
+    /* transform: scale(2);
+    transform: translate(500px, 200px); */
+}
+.four {
+    height: 150px;
+    width: 150px;
+    background-color: yellow;
+    /* transition: background-color 1s; */
+    transition-timing-function: ease-in;
+    transition-duration: 3s;
+}
+
+.four:hover {
+    /* background-color: blue; */
+    transform: translate(800px);
+    /* transform: rotate(30deg); */
+    /* transform: scale(2);
+    transform: translate(500px, 200px); */
+}
+.five {
+    height: 150px;
+    width: 150px;
+    background-color: blue;
+    /* transition: background-color 1s; */
+    transition-timing-function: ease;
+    transition-duration: 3s;
+}
+
+.five:hover {
+    /* background-color: blue; */
+    transform: translate(800px);
+    /* transform: rotate(30deg); */
+    /* transform: scale(2);
+    transform: translate(500px, 200px); */
+}
