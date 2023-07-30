@@ -1,0 +1,34 @@
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+a {
+    font-size: 50px;
+    text-decoration: none;
+    border: 2px solid black;
+    padding: 10px 30px;
+    position: relative;
+    /* overflow: hidden; */
+}
+
+a::before {
+    content: '';
+    background-color: yellow;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: -1;
+    /* transform: translate(250px); */
+    transform: rotate(90deg);
+    transform-origin: top left;
+    transition-duration: 2s;
+}
+
+a:hover::before {
+    transform: translate(0px);
+}

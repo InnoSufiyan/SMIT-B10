@@ -1,0 +1,53 @@
+.myMainDiv {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ball {
+    width: 60px;
+    height: 60px;
+    background-color: black;
+    border-radius: 50%;
+    animation-name: moving;
+    animation-duration: 0.5s;
+    transform: translate(0px);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+}
+
+.ball:nth-child(1) {
+    animation-delay: 0;
+}
+.ball:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.ball:nth-child(3) {
+    animation-delay: 0.4s;
+}
+.ball:nth-child(4) {
+    animation-delay: 0.6s;
+}
+.ball:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+.floor {
+    height: 20px;
+    width: 400px;
+    background-color: black;
+}
+
+@keyframes moving {
+    from {
+        transform: translate(0px, -200px);
+    }
+
+    to {
+        transform: translate(0px, 0px);
+    }
+}

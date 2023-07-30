@@ -1,0 +1,78 @@
+div:nth-child(1) {
+    height: 150px;
+    width: 150px;
+    background-color: red;
+    transform: translate(500px);
+    animation-name: movingBox;
+    animation-duration: 1s;
+    transform: translate(500px);
+    /* animation-delay: 5s; */
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+    animation-direction: alternate;
+}
+div:nth-child(2) {
+    height: 150px;
+    width: 150px;
+    background-color: green;
+    transform: translate(500px);
+    animation-name: movingBox;
+    animation-duration: 1s;
+    transform: translate(500px);
+    /* animation-delay: 5s; */
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+    animation-direction: alternate;
+    
+}
+div:nth-child(3) {
+    height: 150px;
+    width: 150px;
+    background-color: yellow;
+    animation-name: movingBox;
+    animation-duration: 1s;
+    transform: translate(500px);
+    /* animation-delay: 5s; */
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-out;
+    animation-direction: alternate;
+}
+div:nth-child(4) {
+    height: 150px;
+    width: 150px;
+    background-color: blue;
+    transform: translate(500px);
+    animation-name: movingBox;
+    animation-duration: 1s;
+    transform: translate(500px);
+    /* animation-delay: 5s; */
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+}
+div:nth-child(5) {
+    height: 150px;
+    width: 150px;
+    background-color: pink;
+    transform: translate(500px);
+    animation-name: movingBox;
+    animation-duration: 1s;
+    transform: translate(500px);
+    /* animation-delay: 5s; */
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+}
+
+
+@keyframes movingBox {
+    from {
+        /* background-color: red; */
+        transform: translate(0px);
+    }
+    
+    to {
+        /* background-color: yellow; */
+        transform: translate(1000px);
+    }
+}
