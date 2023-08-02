@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#car {
+    position: absolute;
+    bottom: 0;
+    width: 200px;
+    left: 500px;
+}
+
+#motobike {
+    position: absolute;
+    bottom: 0;
+    width: 120px;
+    left: 800px;
+    animation: bikeAnimation 4s ease-in-out infinite alternate;
+    /* transform: scaleX(-1); */
+}
+
+#bg {
+    height: 100vh;
+    width: 100%;
+    background: url('./assets/bg.jpg') left bottom;
+    animation: backgroundAnimation 10s linear infinite;
+}
+
+@keyframes backgroundAnimation {
+    from {
+        background: url('./assets/bg.jpg') left bottom;
+    }
+
+    to {
+        background: url('./assets/bg.jpg') right bottom;
+    }
+}
+
+@keyframes bikeAnimation {
+    from {
+        left: 800px;
+    }
+
+    to {
+        left: 400px;
+    }
+}
