@@ -1,0 +1,47 @@
+.grid-box {
+    background-color: green;
+    height: 500px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 100px 200px 300px 50px;
+
+    /* used for moving grid box */
+
+    /* left to rigth */
+    justify-content: center;
+
+    /* top to bottom */
+    align-content: center;
+
+    /* used for moving grid box items */
+
+    /* left to rigth */
+    justify-items: center;
+
+    /* top to bottom */
+    align-items: center;
+}
+
+.grid-box div {
+    font-size: 30px;
+}
+
+.grid-box :nth-child(1) {
+    background-color: red;
+}
+
+.grid-box :nth-child(2) {
+    background-color: green;
+}
+
+.grid-box :nth-child(3) {
+    background-color: pink;
+}
+
+.grid-box :nth-child(4) {
+    background-color: blue;
+}
+
+.grid-box :nth-child(5) {
+    background-color: brown;
+}
