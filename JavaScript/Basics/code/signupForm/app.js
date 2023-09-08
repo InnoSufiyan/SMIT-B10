@@ -41,12 +41,12 @@ function signupHandler() {
 
 //  checking if empty value
 
-    if (firstName.value == "" ||
-        lastName.value == "" ||
-        userName.value == "" ||
-        password.value == "" ||
-        cPassword.value == "" ||
-        email.value == "") {
+    if (!firstName.value ||
+        !lastName.value ||
+        !userName.value ||
+        !password.value ||
+        !cPassword.value ||         // not confirm password value // true
+        !email.value) {
         return alert("tamaam fields ko pura kareyn")
     }
 
