@@ -54,10 +54,10 @@
 // console.log(foodMenuOffice1)
 // console.log(foodMenuOffice2)
 
-var fruits = ["aam", "orangi", "banana", "grapes", "apples", "strawberry"]
+// var fruits = ["aam", "orangi", "banana", "grapes", "apples", "strawberry"]
 
 // console.log(fruits.length, "===>>length")
-           //6
+//6
 // fruits[fruits.length + 5] = "kuch bhi"
 
 // fruits[fruits.length] = 47
@@ -70,3 +70,79 @@ var fruits = ["aam", "orangi", "banana", "grapes", "apples", "strawberry"]
 
 // console.log(myFruit)
 // console.log(fruits)
+
+
+
+const students = [
+    {
+        name: "aslam",
+        id: 1,
+        score: 75,
+        fvrtSubj: "history"
+    },
+    {
+        name: "aslam",
+        id: 1,
+        score: 75,
+        fvrtSubj: "maths"
+    },
+    {
+        name: "aslam",
+        id: 1,
+        score: 75,
+        fvrtSubj: "urdu"
+    },
+    {
+        name: "aslam",
+        id: 1,
+        score: 75,
+        fvrtSubj: "maths"
+    },
+    {
+        name: "salman",
+        id: 2,
+        score: 90,
+        fvrtSubj: "english"
+    },
+    {
+        name: "furqan",
+        id: 1,
+        score: 90,
+        fvrtSubj: "english"
+    },
+    {
+        name: "farhan",
+        id: 1,
+        score: 63,
+        fvrtSubj: "maths"
+    },
+    {
+        name: "kamran",
+        id: 1,
+        score: 71,
+        fvrtSubj: "urdu"
+    }
+]
+
+
+// const totalScore = students.reduce(function (puraniValue, current) {
+//     return puraniValue + current.score
+// }, 0)
+
+// console.log(totalScore / students.length, "===>>totalScore")
+
+const survey = students.reduce(function (prev, curr) {
+    // console.log(prev, "===>>previous")       //{history: 1, maths: 2, urdu
+
+    if (prev.hasOwnProperty(curr.fvrtSubj)) {         // english true
+        prev[curr.fvrtSubj] = prev[curr.fvrtSubj] + 1    //curr.maths = curr.maths + 1
+        return prev                               //{history: 1, maths: 2, urdu: 1}
+    } else {
+        // console.log(false)
+        prev[curr.fvrtSubj] = 1                     //{history: 1, maths: 1}.urdu = 1
+        //{history: 1}.maths = 1
+        return prev                                // {history: 1, maths: 1, urdu: 1}
+    }
+}, {})
+
+console.log(survey, "==>>survey")
