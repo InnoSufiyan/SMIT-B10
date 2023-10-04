@@ -57,7 +57,7 @@
 var fruits = ["aam", "orangi", "banana", "grapes", "apples", "strawberry"]
 
 // console.log(fruits.length, "===>>length")
-           //6
+//6
 // fruits[fruits.length + 5] = "kuch bhi"
 
 // fruits[fruits.length] = 47
@@ -70,3 +70,109 @@ var fruits = ["aam", "orangi", "banana", "grapes", "apples", "strawberry"]
 
 // console.log(myFruit)
 // console.log(fruits)
+
+
+
+const people = [
+    { name: "fahad", age: 36, position: "NLE" },
+    { name: "mohsin", age: 17, position: "student" },
+    { name: "saqib", age: 26, position: "shopkeeper" }
+]
+
+const myDiv = document.getElementsByTagName('div')
+
+// const peopleMoreThan20YearsAge = people.map(function(akela) {
+//     if(akela.age >= 20) {
+//         return akela
+//     }
+//     console.log(akela)
+// })
+
+// people.map((people)=> {
+//     myDiv[0].innerText = people.name
+// })
+
+// const peopleMoreThan20 = people.filter(function (ppl) {
+//     if (ppl.age <= 20) {
+//         return ppl
+//     }
+// })
+
+// console.log(peopleMoreThan20, "==>> peopleMorethan20")
+
+
+// const foodSchedule = [
+//     "biryani", "daal", "subzi", "korma", "biryani", "subzi"
+// ]
+
+// const biryaniHowManyTimes = foodSchedule.filter(function(food) {
+//     if(food === "biryani") {
+//         return true
+//     }
+// })
+
+// console.log(biryaniHowManyTimes)
+
+// const birArr = biryaniHowManyTimes.map(function(biryani) {
+//     return "bir"
+// })
+
+// console.log(birArr,"==>>birArr")
+
+
+// const arr = [
+//     0,1,2,3,4,5,6,7,8,9
+// ]
+
+// const selectedValues = arr.filter(function(val) {
+//     if(val > 1 && val < 9) return true
+// }).map(function(val) {
+//     return val * val
+// })
+
+// var userDemand = +prompt("How much is your budget")
+// var companyName = prompt("konsi company ka chahiye")
+
+const mobilePhones = [
+    // { name: "samsung", modelNo: "S20", price: "100000" },
+    { name: "samsung", modelNo: "S21", price: "200000" },
+    { name: "samsung", modelNo: "S21", price: "200000" },
+    { name: "iphone", modelNo: "15proMax", price: "900000" },
+    { name: "nokia", modelNo: "3310", price: "7200" },
+    { name: "infinix", modelNo: "note30", price: "60000" },
+    { name: "techno", modelNo: "cam120", price: "55000" },
+]
+
+// const displayItem = mobilePhones.filter(function(mobile){
+//     if(mobile.price >= userDemand) return true
+// }).map(function(mobile){
+//     return `we have a phone of company ${mobile.name} and its model number is  ${mobile.modelNo} and it will cost you ${mobile.price} Rs`
+// })
+
+// const singleDisplayItem = mobilePhones.find(function (mobile) {
+//     if (mobile.price == 200000) return true
+// }
+// )
+
+const students = [
+    {name: "std1", score: 65, id: 1},
+    {name: "std2", score: 85, id: 2},
+    {name: "std3", score: 82, id: 3},
+    {name: "std4", score: 955, id: 4},
+    {name: "std5", score: 95, id: 5},
+
+]
+
+// const highScores = students.filter(function(std) {
+//     if(std.score >= 80) return true
+// }).map(function(selectedStudents){
+//     return selectedStudents.name
+// })
+
+// console.log(highScores)
+
+const specificId = students.find(function(std){
+    return std.id == 4
+}).score
+
+console.log(specificId)
