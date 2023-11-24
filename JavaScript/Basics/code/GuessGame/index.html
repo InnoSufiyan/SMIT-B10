@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Game</title>
+</head>
+<body>
+    <div>
+        <button onclick="againHandler()">Again!</button>
+        <p>Guess between 1 and 20</p>
+    </div>
+    <h1>
+        Guess my Number
+    </h1>
+    <div>
+        <h2 id="questionMark">?</h2>
+    </div>
+    <div>
+        <div>
+            <input type="text" id="userAnswer">
+            <button onclick="answerCheckHandler()">Check!</button>
+        </div>
+        <div>
+            <p id="remarks">
+                Start guessing...
+            </p>
+            <p id="score">
+                Score: 20
+            </p>
+            <p id="highScore">HighScore: 0</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
