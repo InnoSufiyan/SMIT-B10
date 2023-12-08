@@ -36,6 +36,7 @@ const signupHandler = () => {
 
 
     const user = {
+        id: Date.now(),
         userName: userName.value,
         email: email.value,
         password: password.value,
