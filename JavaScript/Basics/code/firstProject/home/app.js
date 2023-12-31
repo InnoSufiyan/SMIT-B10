@@ -1,15 +1,41 @@
 // const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'))
 
-import { auth, onAuthStateChanged, signOut } from "../utils/firebaseConfig.js";
+import {
+  addDoc,
+  auth,
+  collection,
+  db,
+  getDoc,
+  getDocs,
+  onAuthStateChanged,
+  query,
+  signOut,
+  doc as docFromFirebase,
+  doc,
+  deleteDoc,
+  setDoc,
+} from "../utils/firebaseConfig.js";
 
 // if (!loggedInUser) window.location.href = '../login/index.html'
-
-onAuthStateChanged(auth, (user) => {
+let userDetails;
+let uid;
+onAuthStateChanged(auth, async (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties
     // https://firebase.google.com/docs/reference/js/auth.user
-    const uid = user.uid;
+    uid = user.uid;
     console.log(uid, "==>> uid");
+    const docRef = doc(db, "users", uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+      userDetails = docSnap.data();
+      console.log(docSnap.data());
+    } else {
+      console.log("No Document found");
+    }
+
     // ...
   } else {
     // User is signed out
@@ -27,6 +53,7 @@ const postInput = document.querySelector("#postInput");
 const postContentArea = document.querySelector("#postContentArea");
 
 const submitBtn = document.querySelector("#submitBtn");
+const imageBtn = document.querySelector("#imageBtn");
 const logoutBtn = document.querySelector("#logoutBtn");
 
 let imageUrl;
@@ -37,24 +64,66 @@ const postsLocalStorage = JSON.parse(localStorage.getItem("posts")) || [];
 
 // postsLocalStorage.reverse().filter((ele)=> ele.userDetail.email == JSON.parse(localStorage.getItem('loggedInUser')).email)
 
-const postDisplayHandler = () => {
+const postDisplayHandler = async () => {
   postContentArea.innerHTML = "";
 
-  const postsLocalStorage = JSON.parse(localStorage.getItem("posts")) || [];
+  //firebase se bht sarey documents lenay jaa raha hun
 
-  console.log(postsLocalStorage, "===>>>postsLocalStorage");
+  const posts = [];
+  const q = query(collection(db, "posts"));
 
-  postsLocalStorage.reverse().forEach((post) => {
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach(async (doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    console.log(doc.id, " => ", doc.data());
+
+    const singlePost = doc.data();
+
+    posts.push({ ...singlePost, id: doc.id });
+
+    //user data laa k do, jis ney posting ki thi
+
+    // singlePost.userUid
+  });
+
+  console.log(posts, "===>> posts");
+
+  //bht saara data le kar aa chuka
+
+  posts.reverse().forEach((post) => {
+    console.log(post, "======>>> post");
+    console.log(userDetails, "======>>> userDetails");
     let textHTML;
     if (post?.imgData) {
       textHTML = `
             <div class="card text-center">
+            
             <div class="card-header" id="userName">
-                   ${
-                     loggedInUser.email === post?.userDetail.email
-                       ? `<button onclick="editHandler(${post?.id})">Edit</button> ${post?.userDetail.userName} <button onclick="deleteHandler(${post?.id})">Delete</button>`
-                       : `${post?.userDetail.userName}`
-                   } 
+
+
+            ${
+              uid === post?.userDetails.uid
+                ? `<button onclick="editHandler('${post?.id}')">Edit</button> 
+                
+                <img style="border-radius: 50%" width="50px" height="50px" src="${
+                  post.userDetails.profileUrl
+                    ? post.userDetails.profileUrl
+                    : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+                }" />
+                ${post?.userDetails.userName} <button onclick="deleteHandler('${
+                    post?.id
+                  }')">Delete</button>`
+                : `
+                <img style="border-radius: 50%" width="50px" height="50px" src="${
+                  post.userDetails.profileUrl
+                    ? post.userDetails.profileUrl
+                    : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+                }" />
+                ${post?.userDetails.userName}
+                
+                `
+            } 
+
                 </div>
             <div class="card">
   <div class="card-body">
@@ -70,11 +139,32 @@ const postDisplayHandler = () => {
       textHTML = `
                 <div class="card text-center">
                 <div class="card-header" id="userName">
-                   ${
-                     loggedInUser.email === post?.userDetail.email
-                       ? `<button onclick="editHandler(${post?.id})">Edit</button> ${post?.userDetail.userName} <button onclick="deleteHandler(${post?.id})">Delete</button>`
-                       : `${post?.userDetail.userName}`
-                   } 
+                ${
+                  uid === post?.userDetails.uid
+                    ? `<button onclick="editHandler('${
+                        post?.id
+                      }')">Edit</button> 
+                    
+                    <img style="border-radius: 50%" width="50px" height="50px" src="${
+                      post.userDetails.profileUrl
+                        ? post.userDetails.profileUrl
+                        : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+                    }" />
+                    ${
+                      post?.userDetails.userName
+                    } <button onclick="deleteHandler('${
+                        post?.id
+                      }')">Delete</button>`
+                    : `
+                    <img style="border-radius: 50%" width="50px" height="50px" src="${
+                      post.userDetails.profileUrl
+                        ? post.userDetails.profileUrl
+                        : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+                    }" />
+                    ${post?.userDetails.userName}
+                    
+                    `
+                } 
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Special Post</h5>
@@ -99,28 +189,33 @@ const imageOpenerHandler = () => {
   imageUrl = prompt("Post the link of your image");
 };
 
-const postSubmitHandler = () => {
+window.postSubmitHandler = async () => {
   let postObj;
   console.log(postInput.value, "===>>>postInput");
   if (imageUrl) {
     console.log(imageUrl, "====>>imageUrl");
     postObj = {
-      id: Date.now(),
       textData: postInput.value,
       imgData: imageUrl,
-      userDetail: JSON.parse(localStorage.getItem("loggedInUser")),
+      userDetails: userDetails,
     };
   } else {
     postObj = {
-      id: Date.now(),
       textData: postInput.value,
-      userDetail: JSON.parse(localStorage.getItem("loggedInUser")),
+      userDetails: userDetails,
     };
   }
 
-  postsLocalStorage.push(postObj);
+  console.log(postObj, "===>>> postObj");
 
-  localStorage.setItem("posts", JSON.stringify(postsLocalStorage));
+  alert("data save karwaney jaa raha hun");
+
+  // is jagah per data firebase main save karwana hai
+
+  const docRef = await addDoc(collection(db, "posts"), postObj);
+  console.log("Document written with ID: ", docRef.id);
+
+  // save karwaney k baad input data khali karwa diya
 
   imageUrl = "";
 
@@ -145,78 +240,41 @@ const logoutHandler = () => {
     });
 };
 
-const editHandler = (postId) => {
+window.editHandler = (postId) => {
   console.log("edit handler working properly", postId);
-  const postsLocalStorage = JSON.parse(localStorage.getItem("posts"));
-  console.log(postsLocalStorage, "====>> postsLocalStorage");
-
-  const findPost = postsLocalStorage.find((post) => post.id === postId);
-  const findPostIndex = postsLocalStorage.findIndex(
-    (post) => post.id === postId
-  );
-
-  console.log(findPost, "====>>> findPost");
-
-  oldPost = findPost;
-  oldPostIndex = findPostIndex;
-
-  postInput.value = findPost.textData;
-
   submitBtn.innerHTML = "Update";
 
-  submitBtn.setAttribute("onclick", "updatePostHandler()");
+  submitBtn.setAttribute("onclick", `updatePostHandler('${postId}')`);
 };
-const deleteHandler = (postId) => {
+window.deleteHandler = async (postId) => {
   console.log("delete handler working properly", postId);
-  const forDelete = JSON.parse(localStorage.getItem("posts"));
-  const filteredData = forDelete.filter((post) => post.id != postId);
-  console.log(filteredData, "===>> filteredData");
-  localStorage.setItem("posts", JSON.stringify(filteredData));
+  await deleteDoc(doc(db, "posts", postId));
   postDisplayHandler();
 };
 
-const updatePostHandler = () => {
-  console.log("update post handler working");
+window.updatePostHandler = async (postId) => {
+  console.log("update post handler working", postId);
+
+  // return;
 
   let postObj;
-  console.log(postInput.value, "===>>>postInput");
   if (imageUrl) {
     console.log(imageUrl, "====>>imageUrl");
     postObj = {
       textData: postInput.value,
       imgData: imageUrl,
-      userDetail: JSON.parse(localStorage.getItem("loggedInUser")),
+      userDetails: userDetails,
     };
   } else {
     postObj = {
       textData: postInput.value,
-      userDetail: JSON.parse(localStorage.getItem("loggedInUser")),
+      userDetails: userDetails,
     };
   }
 
-  console.log(postObj, "====>>>postObj");
+  console.log(postObj, "===>>>postObj");
 
-  const newUpdatePostData = {
-    id: oldPost?.id,
-
-    textData: postObj.textData || oldPost.textData,
-
-    //textData: condition ? implement1 : implement2
-
-    imgData: postObj.imgData || oldPost.imgData,
-
-    userDetail: JSON.parse(localStorage.getItem("loggedInUser")),
-  };
-
-  console.log(newUpdatePostData, "===>>>>newUpdatePostData");
-
-  const postsLocalStorage = JSON.parse(localStorage.getItem("posts"));
-
-  postsLocalStorage.splice(oldPostIndex, 1, newUpdatePostData);
-
-  console.log(postsLocalStorage, "===>>> postLocalStorage");
-
-  localStorage.setItem("posts", JSON.stringify(postsLocalStorage));
+  await setDoc(doc(db, "posts", postId), postObj);
 
   postDisplayHandler();
 
@@ -225,5 +283,6 @@ const updatePostHandler = () => {
   submitBtn.setAttribute("onclick", "postSubmitHandler()");
 };
 
-
-logoutBtn.addEventListener('click', logoutHandler)
+logoutBtn.addEventListener("click", logoutHandler);
+imageBtn.addEventListener("click", imageOpenerHandler);
+// submitBtn.addEventListener("click", postSubmitHandler);

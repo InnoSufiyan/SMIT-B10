@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   db,
   doc,
+  getDoc,
   onAuthStateChanged,
   setDoc,
 } from "../utils/firebaseConfig.js";
@@ -15,32 +16,37 @@ const password = document.getElementById("password");
 const cPassword = document.getElementById("cPassword");
 const signupSubmitBtn = document.getElementById("signupSubmitBtn");
 
-// const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+onAuthStateChanged(auth, async (user) => {
+  //login
+  if (user) {
+    const uid = user.uid; //uid
+    console.log(uid, "==>> uid");
 
-// if (loggedInUser) window.location.href = "../home/index.html";
+    alert("user is logged in");
 
-window.addEventListener("load", (event) => {
-  console.log("page is fully loaded");
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/auth.user
-      const uid = user.uid;
-      console.log(uid, "==>> uid");
+    const docRef = doc(db, "users", uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+
+      alert("user data is available");
       // window.location.href = "../home/index.html";
-      // ...
     } else {
-      // User is signed out
-      // ...
-      // window.location.href = "../login/index.html";
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
     }
-  });
+
+    // ...
+  } else {
+    alert("user signout hai")
+    // User is signed out
+    // ...
+    // window.location.href = "../login/index.html";
+  }
 });
 
-
 const signupHandler = () => {
-  const users = JSON.parse(localStorage.getItem("users")) || [];
-  console.log(users, "-====>>> users");
 
   //checking fields
   if (!userName.value || !email.value || !password.value || !cPassword.value)
@@ -53,43 +59,24 @@ const signupHandler = () => {
   if (password.value != cPassword.value)
     return alert("same password confirm password likh bhai");
 
-  //userName checking
-
-  // const userNameFound = users.find((user)=> {
-  //     if(user.userName === userName.value) return user
-  // })
-
-  //   if (userNameFound) return alert("UserName already taken");
-
-  //local storage k time per yeh sab kuch zaroori tha
-
-  //   const userEmailFound = users.find((user) => {
-  //     if (user.email === email.value) return user;
-  //   });
-
-  //   if (userEmailFound) return alert("UserEmail already exist");
-
   //firebase signup function
 
   createUserWithEmailAndPassword(auth, email.value, password.value)
     .then(async (userCredential) => {
+      console.log("user register hogaya aur sath main login bhi hogaya")
       // Signed up
       const user = userCredential.user;
       console.log(user, "====>>> user");
 
       //Now will save my data in database
+      alert("main user save karwaney ki koshish karunga")
       try {
-        // const docRef = await addDoc(collection(db, "resturant"), {
-        //   userName: userName.value,
-        //   email: email.value,
-        // });
         const docRef = await setDoc(doc(db, "users", user.uid), {
           userName: userName.value,
           email: email.value,
           uid: user.uid,
         });
-        // console.log("Document written with ID: ", docRef.id);
-
+        alert("user save hogaya")
         alert(
           "User have registered Successfully, now you are re-directing to login page"
         );
@@ -97,6 +84,7 @@ const signupHandler = () => {
           window.location.href = "../login/index.html";
         }, 2000);
       } catch (e) {
+        alert("error aagaya")
         console.error("Error adding document: ", e);
       }
 
@@ -110,25 +98,6 @@ const signupHandler = () => {
       alert(errorCode);
       // ..
     });
-
-  //   const user = {
-  //     id: Date.now(),
-  //     userName: userName.value,
-  //     email: email.value,
-  //     password: password.value,
-  //     cPassword: cPassword.value,
-  //   };
-
-  //   users.push(user);
-
-  //   localStorage.setItem("users", JSON.stringify(users));
-
-  //   alert(
-  //     "Signup Successfully, now you can login, diverting you to the login page"
-  //   );
-  //   setTimeout(() => {
-  //     window.location.href = "../login/index.html";
-  //   }, 2000);
 };
 
 signupSubmitBtn.addEventListener("click", signupHandler);

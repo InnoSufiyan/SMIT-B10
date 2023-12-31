@@ -1,25 +1,30 @@
-import { auth, onAuthStateChanged, signInWithEmailAndPassword } from "../utils/firebaseConfig.js";
+import { auth, db, doc, getDoc, onAuthStateChanged, signInWithEmailAndPassword } from "../utils/firebaseConfig.js";
 
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const loginSubmitBtn = document.getElementById("loginSubmitBtn");
 
-// const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
-// if (loggedInUser) window.location.href = "../home/index.html";
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/auth.user
+onAuthStateChanged(auth, async(user) => {  //login
+  if (user) {  //login
     const uid = user.uid;
     console.log(uid, "==>> uid");
-    window.location.href = "../home/index.html";
+    alert("user log in huwa hai")
+    const docRef = doc(db, "users", uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+        alert("is user ka data mojood hai")
+        window.location.href = "../home/index.html";
+      } else {
+        // docSnap.data() will be undefined in this case
+        console.log("No such document!");
+      }
     // ...
   } else {
-    // User is signed out
-    // ...
-    // window.location.href = "../login/index.html";
+    alert("signout huwa hai")
   }
 });
 
@@ -45,7 +50,7 @@ const loginHandler = () => {
   //     return alert("Invalid Credentials");
 
   signInWithEmailAndPassword(auth, email.value, password.value)
-    .then((userCredential) => {
+    .then((userCredential) => { //login
       // Signed in
       const user = userCredential.user;
       console.log(user, "===>> user");
