@@ -1,10 +1,11 @@
-import { addInDBById, signUp } from "./utils/functions.mjs";
+import { addInDBById, signUp, uploadFile } from "./utils/functions.mjs";
 
 const name = document.getElementById('fullName');
 const email = document.getElementById('email');
 const userName = document.getElementById('userName');
 const password = document.getElementById('password');
 const cPassword = document.getElementById('cPassword');
+const profilePicture = document.getElementById('profilePicture');
 const signupBtn = document.getElementById('signupBtn');
 
 
@@ -36,6 +37,15 @@ const signupHandler = async () => {
     //calling signup function from utils/functions.mjs
     const registering = await signUp(email.value, password.value)
     if (registering.status) {
+        const profilePictureName = `${new Date().getTime()}-${profilePicture.files[0].name}`
+        //calling uploadFile function from utils/functions.mjs
+        const upload = await uploadFile(profilePicture.files[0], profilePictureName)
+        if (upload.status) {
+            data.profilePicture = upload.downloadURL
+            alert(upload.message)
+        } else {
+            alert(upload.message)
+        }
         //calling addInDBById function from utils/functions.mjs
         const userAddInDB = await addInDBById(data, registering.data.user.uid, "users")
         if (userAddInDB.status) {
