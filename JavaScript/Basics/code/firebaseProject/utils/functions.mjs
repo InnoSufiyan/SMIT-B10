@@ -1,4 +1,4 @@
-import { auth, createUserWithEmailAndPassword, db, doc, getDoc, setDoc, signInWithEmailAndPassword, ref, storage, getDownloadURL, uploadBytes, signOut, getDocs, query, collection } from "./firebaseConfig.js"
+import { auth, createUserWithEmailAndPassword, db, doc, getDoc, setDoc, signInWithEmailAndPassword, ref, storage, getDownloadURL, uploadBytes, signOut, getDocs, query, collection, serverTimestamp } from "./firebaseConfig.js"
 
 
 // created signup function through firebase auth
@@ -189,4 +189,4 @@ const uploadFile = async (file, fileName) => {
 };
 
 
-export { signUp, login, addInDBById, getLoggedInUser, getData, updateData, uploadFile }
+export { signUp, login, addInDBById, getLoggedInUser, getData, updateData, uploadFile, getAllDataOrderedByTimestamp, logout }
