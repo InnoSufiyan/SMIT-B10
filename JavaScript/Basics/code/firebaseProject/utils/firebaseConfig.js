@@ -17,7 +17,8 @@ import {
   query,
   getDocs,
   deleteDoc,
-  serverTimestamp
+  serverTimestamp,
+  orderBy
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import {
   ref,
@@ -68,5 +69,6 @@ export {
   storage,
   getDownloadURL,
   uploadBytes,
-  serverTimestamp
+  serverTimestamp,
+  orderBy
 };

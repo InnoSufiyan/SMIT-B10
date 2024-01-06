@@ -1,4 +1,4 @@
-import { auth, createUserWithEmailAndPassword, db, doc, getDoc, setDoc, signInWithEmailAndPassword, ref, storage, getDownloadURL, uploadBytes, signOut, getDocs, query, collection, serverTimestamp } from "./firebaseConfig.js"
+import { auth, createUserWithEmailAndPassword, db, doc, getDoc, setDoc, signInWithEmailAndPassword, ref, storage, getDownloadURL, uploadBytes, signOut, getDocs, query, collection, serverTimestamp, addDoc, orderBy } from "./firebaseConfig.js"
 
 
 // created signup function through firebase auth
@@ -87,8 +87,11 @@ const getData = async (id, collectionName) => {
 // created getDataOrderedByTimestamp function to get data from db ordered by timestamp
 const getAllDataOrderedByTimestamp = async (collectionName) => {
     try {
-        // Getting all data from the collection ordered by timestamp
-        const querySnapshot = await getDocs(query(collection(db, collectionName).orderBy('timestamp')));
+        // Creating a query to order the data by timestamp
+        const q = query(collection(db, collectionName), orderBy('timestamp'));
+
+        // Getting data from db ordered by timestamp
+        const querySnapshot = await getDocs(q);
 
         if (!querySnapshot.empty) {
             const data = querySnapshot.docs.map(doc => doc.data());
@@ -110,6 +113,28 @@ const getAllDataOrderedByTimestamp = async (collectionName) => {
         };
     }
 };
+
+const addInDB = async (data, collectionName) => {
+    try {
+        // Add a timestamp to the data
+        const dataWithTimestamp = {
+            ...data,
+            timestamp: serverTimestamp()
+        };
+        //adding data in db and calling firebase db function
+        const addData = await addDoc(collection(db, collectionName), dataWithTimestamp);
+        return {
+            status: true,
+            message: "Data added successfully",
+            data: addData
+        }
+    } catch (error) {
+        return {
+            status: false,
+            message: error.message
+        }
+    }
+}
 
 // created addInDBById function to add data in db by our provided id
 const addInDBById = async (data, id, collectionName) => {
@@ -189,4 +214,4 @@ const uploadFile = async (file, fileName) => {
 };
 
 
-export { signUp, login, addInDBById, getLoggedInUser, getData, updateData, uploadFile, getAllDataOrderedByTimestamp, logout }
+export { signUp, login, addInDBById, getLoggedInUser, getData, updateData, uploadFile, getAllDataOrderedByTimestamp, logout, addInDB }
