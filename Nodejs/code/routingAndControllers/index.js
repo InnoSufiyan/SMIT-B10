@@ -1,7 +1,14 @@
 import express from "express"
 import { authRoute } from "./routes/authRoute.js"
-
+import dotenv from 'dotenv'
+import { dbConnection } from "./utils/config.js"
 const app = express()
+dotenv.config()
+app.use(express.json())
+
+dbConnection()
+
+
 
 app.use("/auth", authRoute)
 // app.use("/jobs", jobsRoute)
@@ -121,7 +128,7 @@ app.use("/auth", authRoute)
 //     })
 // })
 
-const PORT = 8000
-app.listen(PORT, () => {
-    console.log(`Server is started at port number ${PORT}`)
+// const PORT = 8000
+app.listen(process.env.PORT, () => {
+    console.log(`Server is started at port number ${process.env.PORT}`)
 })
