@@ -3,16 +3,39 @@ import Product from '../models/Product.js'
 export const getProductsController = async (req, res) => {
 
     try {
-        const { name, price, rating, brand, postedBy } = req.query
-        let products
-        if (rating && postedBy) {
-            products = await Product.find({
-                rating: { $gte: rating },
-                postedBy: postedBy
-            })
+
+        const objQueries = { ...req.query }
+        const excludedQueries = ['limit', 'page', 'sort', 'fields', 'excludingFields']
+
+        excludedQueries.forEach(el => delete objQueries[el])
+
+        let productsQuery = Product.find(objQueries)
+
+
+
+
+        if (req.query.sort) {
+            productsQuery.sort(req.query.sort)
         } else {
-            products = await Product.find()
+            productsQuery.sort({ createdAt: -1 })
         }
+
+        if (req.query.fields) {
+            const fields = req.query.fields.split(',').join(' ')
+            productsQuery.select(fields)
+        }
+        if (req.query.excludingFields) {
+            console.log(req.query.excludingFields)
+            const excludingFields = req.query.excludingFields.split(',').join(' ')
+            productsQuery.select(excludingFields)
+        }
+
+        console.log(req.query)
+        const page = req.query.page * 1 || 1    //2
+        const limit = req.query.limit * 1 || 10
+        const skip = (page - 1) * limit                //1  //3  == 3
+        productsQuery.skip(skip).limit(limit)
+        const products = await productsQuery
 
         res.json({
             status: true,
