@@ -6,12 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import Counter from './Counter';
 import App2 from './App2';
 import About from './About';
+import ComponentPractice from './ComponentPractice';
+import DifferentStages from './DifferentStages/DifferentStages';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <App2 /> */}
-    <About />
+    {/* <About /> */}
     {/* <App name="Haroon" />
     <App name="Ehtisham" />
     <App name="Farooq" />
@@ -20,6 +22,8 @@ root.render(
     <App name="Saqib" age="32" />
     <App />
     <Counter /> */}
+    {/* <ComponentPractice /> */}
+    <DifferentStages />
   </React.StrictMode>
 );
 
