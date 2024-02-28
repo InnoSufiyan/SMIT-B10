@@ -23,7 +23,9 @@ root.render(
     <App />
     <Counter /> */}
     {/* <ComponentPractice /> */}
-    <DifferentStages />
+    {/* <DifferentStages /> */}
+    <App />
+
   </React.StrictMode>
 );
 
