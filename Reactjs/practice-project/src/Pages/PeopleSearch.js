@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 
 export default function PeopleSearch() {
@@ -8,6 +9,14 @@ export default function PeopleSearch() {
         { name: "Sufiyan", experience: 5, designation: "Fool Stack Developer" },
         { name: "Kamran", experience: 5, designation: "Fool Stack Developer" },
     ]
+
+    // useEffect(()=> {
+    //     if(userLogin) {
+
+    //     } else {
+            
+    //     }
+    // }, [])
 
 
     return (

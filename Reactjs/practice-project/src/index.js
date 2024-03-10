@@ -10,10 +10,11 @@ import ComponentPractice from './ComponentPractice';
 import DifferentStages from './DifferentStages/DifferentStages';
 import { CustomHookLearning } from './Pages/CustomHookLearning';
 import { UseReducer } from './Pages/UseReducer';
+import { MemoizeLearning } from './Pages/MemoizeLearning';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <>
     {/* <App2 /> */}
     {/* <About /> */}
     {/* <App name="Haroon" />
@@ -23,14 +24,15 @@ root.render(
     <App name="Sufiyan" />
     <App name="Saqib" age="32" />
     <App />
-    <Counter /> */}
+  <Counter /> */}
     {/* <ComponentPractice /> */}
     {/* <DifferentStages /> */}
     {/* <App /> */}
     {/* <CustomHookLearning /> */}
-    <UseReducer />
+    {/* <UseReducer /> */}
+    < MemoizeLearning />
 
-  </React.StrictMode>
+  </>
 );
 
 
