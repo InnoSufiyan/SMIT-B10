@@ -8,6 +8,8 @@ import App2 from './App2';
 import About from './About';
 import ComponentPractice from './ComponentPractice';
 import DifferentStages from './DifferentStages/DifferentStages';
+import { CustomHookLearning } from './Pages/CustomHookLearning';
+import { UseReducer } from './Pages/UseReducer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,7 +26,9 @@ root.render(
     <Counter /> */}
     {/* <ComponentPractice /> */}
     {/* <DifferentStages /> */}
-    <App />
+    {/* <App /> */}
+    {/* <CustomHookLearning /> */}
+    <UseReducer />
 
   </React.StrictMode>
 );
