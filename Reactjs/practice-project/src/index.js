@@ -11,6 +11,9 @@ import DifferentStages from './DifferentStages/DifferentStages';
 import { CustomHookLearning } from './Pages/CustomHookLearning';
 import { UseReducer } from './Pages/UseReducer';
 import { MemoizeLearning } from './Pages/MemoizeLearning';
+import CustomHookPractice from './Components/CutomHookPracitce';
+import { TodoListReducer } from './Pages/TodoListReducer';
+import { HiringMineUseReducer } from './Pages/HiringMIneUseReducer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -30,8 +33,10 @@ root.render(
     {/* <App /> */}
     {/* <CustomHookLearning /> */}
     {/* <UseReducer /> */}
-    < MemoizeLearning />
-
+    {/* < MemoizeLearning /> */}
+    {/* <CustomHookPractice /> */}
+    {/* <TodoListReducer /> */}
+    <HiringMineUseReducer />
   </>
 );
 
