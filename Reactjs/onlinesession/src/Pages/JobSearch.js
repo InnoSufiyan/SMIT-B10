@@ -1,9 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Navbar } from "../Component/Navbar";
 import { useFetchData } from "../CustomHook/useDataFetch";
 import { Link } from "react-router-dom";
+import { GlobalContext } from "../App";
 
 export const JobSearch = () => {
+
+    const { state, dispatch } = useContext(GlobalContext)
+
+    console.log(state, "==>> state")
 
     const [page, setPage] = useState(1)
 

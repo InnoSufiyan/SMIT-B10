@@ -24,7 +24,7 @@ export const Home = () => {
                 }}>
 
                     {
-                        categories.slice(0, 6)?.map((category) => (
+                        categories?.slice(0, 6)?.map((category) => (
                             <div key={category._id} style={{
                                 border: "1px solid #000",
                                 padding: "10px",
@@ -49,7 +49,7 @@ export const Home = () => {
                 }}>
 
                     {
-                        jobs.slice(0, 12)?.map((job) => (
+                        jobs?.slice(0, 12)?.map((job) => (
                             <div key={job._id} style={{
                                 border: "1px solid #000",
                                 padding: "10px",
