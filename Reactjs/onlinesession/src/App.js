@@ -1,10 +1,9 @@
-import logo from './logo.svg';
+
 import './App.css';
 import {
   BrowserRouter,
   Routes,
   Route,
-  Link,
 } from "react-router-dom";
 import { Home } from './Pages/Home';
 import { JobSearch } from './Pages/JobSearch';
@@ -21,11 +20,11 @@ const initialState = {
 }
 
 const reducer = (state, action) => {
-  if (action.type == 'login') {
+  if (action.type === 'login') {
     return {
       ...state, user: true
     }
-  } else if (action.type == 'logout') {
+  } else if (action.type === 'logout') {
     return {
       ...state, user: null
     }
